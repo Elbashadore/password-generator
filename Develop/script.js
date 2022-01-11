@@ -65,14 +65,16 @@ function passwordLengthForm(){
 }
 
 function createPassword (length=passwordLength) {
+  // passwordArray = []
   while(i < passwordLength){
   var lowerCaseRand = Math.floor(Math.random() * lowerCaseArray.length)
   var upperCaseRand = Math.floor(Math.random() * upperCaseArray.length)
   var numbersRand = Math.floor(Math.random() * numbersArray.length)
   var symbolsRand = Math.floor(Math.random() * symbolsArray.length)
     if (lowerCase === true){
-      passwordArray.push(lowerCaseRand)
+      passwordArray.push(lowerCaseArray[lowerCaseRand])
       console.log(passwordArray)
+      i ++
       
     }
 
@@ -81,7 +83,8 @@ function createPassword (length=passwordLength) {
     }
 
       if (upperCase === true){
-      passwordArray.push(upperCaseRand)
+      passwordArray.push(upperCaseArray[upperCaseRand])
+      i ++
       }
 
       else{
@@ -89,38 +92,33 @@ function createPassword (length=passwordLength) {
       }
 
         if (numbers === true){
-      passwordArray.push(numbersRand)
+      passwordArray.push(numbersArray[numbersRand])
+      i ++
         }
         else{
       console.log("numbers is false")
         }
 
         if (symbols === true){
-      passwordArray.push(symbolsRand)
+      passwordArray.push(symbolsArray[symbolsRand])
+      i ++
           }
         else {
       console.log("symbols is false")
           }
-    i ++
   }
 }
 
 // creates password after user clicks button
 function generatePassword(){
   x = 1
+  i = 0
+  passwordArray =  []
   passwordCriteria();
   passwordLengthForm();
   createPassword();
-  alert(passwordArray.join(""));
-  console.log(upperCase)
-  console.log(lowerCase)
-  console.log(numbers)
-  console.log(symbols)
-  console.log(x)
-  console.log(i)
-  console.log(passwordArray)
-  console.log(numbersArray)
-  
+  var passArray = passwordArray.join("");
+  return passArray;
 }
 
 // Assignment Code
@@ -136,7 +134,7 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", generatePassword);
+generateBtn.addEventListener("click", writePassword);
 
 // passwordCriteria()
 // passwordLengthForm()
